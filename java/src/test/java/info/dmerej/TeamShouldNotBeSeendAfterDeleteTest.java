@@ -8,9 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class Step3Test2 {
+public class TeamShouldNotBeSeendAfterDeleteTest {
     private Page page;
     @BeforeEach
     void setUp() {
@@ -33,7 +32,6 @@ public class Step3Test2 {
         proceedButton.click();
         page.navigate("/");
     }
-
     @Test
     void TeamShouldNotBeSeenAfterDelete() {
 
