@@ -7,9 +7,10 @@ import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AddTeamTest {
+public class Step3Test2 {
     private Page page;
     @BeforeEach
     void setUp() {
@@ -32,9 +33,9 @@ public class AddTeamTest {
         proceedButton.click();
         page.navigate("/");
     }
-    
+
     @Test
-    void test_add_team() {
+    void TeamShouldNotBeSeenAfterDelete() {
 
         // Add a new team
         this.page.navigate("/add_team");
@@ -46,9 +47,15 @@ public class AddTeamTest {
         // Check that the team has been added
         this.page.navigate("/teams");
 
-        // Check the new team is there
+        this.page.click("text='Delete'");
+        this.page.click("text='Proceed'");
+
+        // Go back
+        this.page.goBack();
+
+        // Check the new team is not there
         String selector = String.format("td:has-text('%s')", teamName);
         var isVisible = this.page.isVisible(selector);
-        assertTrue(isVisible);
+        assertFalse(isVisible);
     }
 }

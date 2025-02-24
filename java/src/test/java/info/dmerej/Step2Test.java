@@ -44,6 +44,7 @@ public class Step2Test {
             page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("List teams")).click();
             page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("Delete")).nth(0).click();
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Proceed")).click();
+            assertThat(page.getByText("Home Teams No teams yet")).isVisible();
         }
     }
 }
