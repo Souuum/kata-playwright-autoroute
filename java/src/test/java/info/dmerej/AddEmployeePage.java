@@ -1,9 +1,6 @@
 package info.dmerej;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.AriaRole;
 
 public class AddEmployeePage {
@@ -78,5 +75,9 @@ public class AddEmployeePage {
         this.inputHiringDate(employeeHiringDate);
         this.inputJobTitle(employeeJobTitle);
         page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Add")).click();
+    }
+
+    public Locator selectTable(){
+        return this.page.locator("tbody");
     }
 }

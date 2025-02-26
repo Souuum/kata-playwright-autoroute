@@ -18,6 +18,6 @@ public class PostalCodeShouldNotBeNegativeTest {
     @Test
     void PostalCodeShouldNotBeNegative() {
         this.addEmployeePage.addEmployee("TestName", "test.name@gmail.com", "34 rue poirreau", "Paris", "-1", "2025-02-27", "dev");
-        assertThat(this.page.locator("tbody")).isEmpty();
+        assertThat(this.addEmployeePage.selectTable()).isEmpty();
     }
 }
