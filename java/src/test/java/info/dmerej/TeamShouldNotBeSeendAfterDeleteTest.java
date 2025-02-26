@@ -11,15 +11,21 @@ import info.dmerej.SearchPage;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TeamShouldNotBeSeendAfterDeleteTest {
-    private SearchPage searchPage;
-
+    private TeamPage teamPage;
+    private AddTeamPage addTeamPage;
+    private HomePage homePage
     public TeamShouldNotBeSeendAfterDeleteTest() {
-        this.searchPage = new SearchPage();
+        this.teamPage = new TeamPage();
+        this.addTeamPage = new AddTeamPage();
+        this.homePage = new HomePage();
     }
 
     @BeforeEach
     void setUp() {
-        this.searchPage.setUp();
+        this.teamPage.setUp();
+        this.addTeamPage.setUp();
+        this.homePage.setUp();
+        this.homePage.resetDB();
     }
 
     @Test
@@ -27,19 +33,17 @@ public class TeamShouldNotBeSeendAfterDeleteTest {
 
         // Add a new team
         var teamName = "my team";
-        this.searchPage.navigateToAddTeam();
-        this.searchPage.addTeam(teamName);
+
 
         // Navigate to teams and delete the team
-        this.searchPage.navigateToTeams();
-        this.searchPage.deleteTeam();
-
+        this.addTeamPage.addTeam(teamName);
+        this.teamPage.deleteTeam(teamName);
         // Go back
-        this.searchPage.goBack();
+        this.teamPage.goBack();
 
         // Check the new team is not there
         String selector = String.format("td:has-text('%s')", teamName);
-        var isVisible = this.page.isVisible(selector);
+        var isVisible = this.teamPage.isVisible(selector);
         assertFalse(isVisible);
     }
 }
