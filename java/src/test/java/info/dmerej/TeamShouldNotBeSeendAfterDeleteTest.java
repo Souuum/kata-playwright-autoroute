@@ -13,15 +13,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class TeamShouldNotBeSeendAfterDeleteTest {
     private TeamPage teamPage;
     private AddTeamPage addTeamPage;
+    private HomePage homePage
     public TeamShouldNotBeSeendAfterDeleteTest() {
         this.teamPage = new TeamPage();
         this.addTeamPage = new AddTeamPage();
+        this.homePage = new HomePage();
     }
 
     @BeforeEach
     void setUp() {
         this.teamPage.setUp();
         this.addTeamPage.setUp();
+        this.homePage.setUp();
+        this.homePage.resetDB();
     }
 
     @Test
