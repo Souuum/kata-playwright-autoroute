@@ -1,24 +1,33 @@
-package info.dmerej;
+package info.dmerej.page;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;
-public class HomePage {
+
+public class PageTest {
     private Page page;
 
-    public HomePage(Page page) {
+    public PageTest(Page page) {
         this.page = page;
     }
 
-    public void setUp() {
-        try {
+    public Page getPage() {
+        return this.page;
+    }
+
+    public void setPage(Page page) {
+        this.page = page;
+    }
+
+    public void setUp(String url) {
+        try{
             var playwright = Playwright.create();
             var launchOptions = new BrowserType.LaunchOptions().setHeadless(false)
                     .setSlowMo(1000); // Remove this when you're done debugging
             var browser = playwright.chromium().launch(launchOptions);
             var contextOptions = new Browser.NewContextOptions();
-            contextOptions.setBaseURL("https://a.lsi2.hr.dmerej.info");
+            contextOptions.setBaseURL(url);
             var context = browser.newContext(contextOptions);
 
             this.page = context.newPage();
@@ -27,11 +36,13 @@ public class HomePage {
         }
     }
 
-    public void resetDB() {
-        this.page.navigate("/reset_db");
-        var proceedButton = page.locator("button:has-text('proceed')");
-        proceedButton.click();
-        this.page.navigate("/");
+    public void goBack(){
+        this.page.goBack();
     }
-    
+
+    public boolean isVisible(String selector){
+        return this.page.isVisible(selector);
+    }
+
+
 }

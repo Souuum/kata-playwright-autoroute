@@ -1,19 +1,17 @@
 package info.dmerej;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import info.dmerej.page.AddTeamPage;
+import info.dmerej.page.HomePage;
+import info.dmerej.page.TeamPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import info.dmerej.SearchPage;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TeamShouldNotBeSeendAfterDeleteTest {
     private TeamPage teamPage;
     private AddTeamPage addTeamPage;
-    private HomePage homePage
+    private HomePage homePage;
     public TeamShouldNotBeSeendAfterDeleteTest() {
         this.teamPage = new TeamPage();
         this.addTeamPage = new AddTeamPage();
@@ -22,9 +20,9 @@ public class TeamShouldNotBeSeendAfterDeleteTest {
 
     @BeforeEach
     void setUp() {
-        this.teamPage.setUp();
-        this.addTeamPage.setUp();
-        this.homePage.setUp();
+        this.teamPage.setUp("https://a.lsi2.hr.dmerej.info/teams");
+        this.addTeamPage.setUp("https://a.lsi2.hr.dmerej.info/add_team");
+        this.homePage.setUp("https://a.lsi2.hr.dmerej.info");
         this.homePage.resetDB();
     }
 
