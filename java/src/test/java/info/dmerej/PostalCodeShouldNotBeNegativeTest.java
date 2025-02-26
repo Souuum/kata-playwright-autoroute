@@ -1,6 +1,5 @@
 package info.dmerej;
-import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.*;
+import info.dmerej.page.AddEmployeePage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,9 +9,10 @@ public class PostalCodeShouldNotBeNegativeTest {
     private AddEmployeePage addEmployeePage;
 
     public PostalCodeShouldNotBeNegativeTest() { this.addEmployeePage = new AddEmployeePage(); }
+
     @BeforeEach
     void setUp() {
-        this.addEmployeePage.setUp();
+        this.addEmployeePage.setUp("https://a.lsi2.hr.dmerej.info/add_employee");
     }
 
     @Test
